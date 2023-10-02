@@ -10,7 +10,7 @@
         <div class="container">
             <div class="flex-advantages">
 
-                <div class="card" v-for="item in cards">
+                <div class="card" v-for="item in cards" :key="item.id">
                     <div :style="{ backgroundImage: `url(${item.img})` }" class="image">
                         <div class="icon">
                             <img :src=" '/logo/' + item.icon " alt="">
@@ -27,10 +27,10 @@
     </section>
     <section class="main-project">
         <div class="container">
-            <h2>Наши проекты</h2>
+            <h2 class="title-project">Наши проекты</h2>
             <div class="project-flex">
 
-                <div class="card-project" v-for="item in project">
+                <div class="card-project" v-for="item in sliceProject">
                     <nuxt-link class="card-project-img" to="">
                         <div :style="{ backgroundImage: `url(${item.img})`}"></div>
                     </nuxt-link>
@@ -45,6 +45,8 @@
 </template>
 
 <script setup>
+import {ref, computed} from 'vue'
+
 const cards = [
     {
         icon: 'rub.svg',
@@ -66,16 +68,21 @@ const cards = [
     },
 ]
 
-const project = [
-    {id: 1, img: '/image/front-advantage-2.jpg', name: 'Пристройка на 200 мест к зданию МОУ СОШ №17'},
-    {id: 2, img: '/image/front-advantage-2.jpg', name: 'Улица Зайцева и Москворецкая набережная'},
-    {id: 3, img: '/image/front-advantage-2.jpg', name: 'ФОК с плавательным бассейном, го Серебряные Пруды'},
-    {id: 4, img: '/image/front-advantage-2.jpg', name: 'Часовня Св. Александра Невского'},
-    {id: 5, img: '/image/front-advantage-2.jpg', name: 'Благоустройство ул. Ремесленной, го Серебряные Пруды, Уч. №5'},
-    {id: 6, img: '/image/front-advantage-2.jpg', name: 'Работы по повышению безопасности дор. движ., РУАД № 5'},
-    {id: 7, img: '/image/front-advantage-2.jpg', name: 'Работы по повышению безопасности дор. движ., РУАД № 5'},
-    {id: 8, img: '/image/front-advantage-2.jpg', name: 'Работы по повышению безопасности дор. движ., РУАД № 5'}
-]
+const project = ref([
+    {id: 1, img: '/image/banner-1.jpg', name: 'Пристройка на 200 мест к зданию МОУ СОШ №17'},
+    {id: 2, img: '/image/banner-2.jpg', name: 'Улица Зайцева и Москворецкая набережная'},
+    {id: 3, img: '/image/banner-3.jpg', name: 'ФОК с плавательным бассейном, го Серебряные Пруды'},
+    {id: 4, img: '/image/banner-4.jpg', name: 'Часовня Св. Александра Невского'},
+    {id: 5, img: '/image/banner-5.jpg', name: 'Благоустройство ул. Ремесленной, го Серебряные Пруды, Уч. №5'},
+    {id: 6, img: '/image/banner-6.jpg', name: 'Работы по повышению безопасности дор. движ., РУАД № 5'},
+    {id: 7, img: '/image/banner-6.jpg', name: 'Работы по повышению безопасности дор. движ., РУАД № 5'},
+    {id: 8, img: '/image/banner-6.jpg', name: 'Работы по повышению безопасности дор. движ., РУАД № 5'}
+])
+
+const sliceProject = computed(() => {
+  return project.value.slice(0, 6)
+})
+
 
 </script>
 
@@ -227,16 +234,38 @@ const project = [
     padding-top: 60px;
 
 
+    .title-project {
+        color: $title;
+        font-size: 22px;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
     .project-flex {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
 
-        gap: 20px;
+
+        gap: 40px 20px;
 
         .card-project {
             max-width: calc((100% - 20px * 2) / 3);
             width: 100%;
+
+            @media only screen and (min-width: 768px) and (max-width: 1279px) {
+                max-width: calc((100% - 20px) / 2);
+            }
+
+            @media only screen and (min-width: 375px) and (max-width: 767px) {
+                max-width: 100%;
+            }
+
+            @media only screen and (max-width: 374px) {
+                max-width: 100%;
+            }
 
             .card-project-img {
                 display: block;

@@ -1,0 +1,45 @@
+@import '_color.scss';
+@import '_fonts.scss';
+
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body, html {
+    font-family: "Montserrat";
+    font-weight: medium;
+    font-size: 14px;
+    color: $title;
+    line-height: 1.5;
+}
+
+a {
+    font-family: "PT Sans";
+    font-weight: normal;
+    text-decoration: none;
+    color: $text;
+    &:hover {
+        text-decoration: underline;
+        color: $bg;
+    }
+}
+
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+
+    @media only screen and (min-width: 768px) and (max-width: 1279px) {
+        max-width: 688px;
+    }
+
+    @media only screen and (min-width: 375px) and (max-width: 767px) {
+        padding: 0 20px;
+    }
+
+    @media only screen and (min-width: 320px) and (max-width: 374px) {
+        padding: 0 10px;
+    }
+}

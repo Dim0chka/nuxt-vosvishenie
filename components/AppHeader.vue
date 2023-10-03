@@ -50,6 +50,7 @@
 </template>
 
 <script setup>
+import {ref, watch} from 'vue'
 
 const isActive = ref(false)
 
@@ -57,7 +58,7 @@ const isActive = ref(false)
 const headInfo = [
     {icon: "home.svg", title: "Адрес", text: "ул.Куусинена, д.21Б, оф.318", to: "https://yandex.ru/maps/-/CDU9UMLk"},
     {icon: "phone.svg", title: "Позвонить нам", text: "+7 (495) 783-68-53", to: "tel:+74957836853"},
-    {icon: "envelope.svg", title: "Эл. почта", text: "info@vzdv.ru", to: "malito:info@vzdv.ru"}
+    {icon: "envelope.svg", title: "Эл. почта", text: "info@vzdv.ru", to: "mailto:info@vzdv.ru"}
 ]
 
 const headNav = [
@@ -68,16 +69,28 @@ const headNav = [
     {name: "Контакты", to: "/"}
 ]
 
+watch(() => {
+    useHead({
+        bodyAttrs: {
+            class: isActive.value ? '_lock' : ''
+        }
+    })
+})
+
 </script>
 
 <style lang="scss">
+._lock {
+    overflow: hidden;
+}
+
 .header {
     background-color: $text-header;
     position: sticky;   
     top: 0;
     width: 100%;
     left : 0;
-    z-index : 10;
+    z-index : 50;
 
     @media only screen and (min-width: 1280px) {
         position: relative;
@@ -115,7 +128,7 @@ const headNav = [
     height: 100%;
     position: fixed;
     overflow: hidden;
-    
+    z-index : 50;
 
     background-color: $bg-header;
 
@@ -226,6 +239,7 @@ const headNav = [
         background-color: $bg;
         width: 50px;
         height: 50px;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
 
 
         display: flex;

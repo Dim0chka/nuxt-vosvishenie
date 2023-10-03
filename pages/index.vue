@@ -42,6 +42,31 @@
             </div>
         </div>
     </section>
+    <section class="main-clients">
+        <div class="container">
+            <h2 class="title-clients">Нам доверяют клиенты</h2>
+            <div class="clients-flex">
+                <div class="card-clients" v-for="client in clients">
+                    <img :src=" '/logo/' +  client.logo " alt="" height="80">
+                </div>
+            </div>
+        </div>
+    </section>
+    <iframe class="map" src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae9f7b2f8e7d170a93ed029d5a200bab3667e74db0054e13bd2d6ac4b367353b2&amp;source=constructor" frameborder="0"></iframe>
+    <section class="main-contacts">
+        <div class="container">
+            <div class="flex-contacts">
+
+                <div class="contact-card" v-for="contact in contacts">
+                    <h3>{{contact.title}}</h3>
+                    <nuxt-link :to="contact.to">
+                        {{ contact.contact }}
+                    </nuxt-link>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </template>
 
 <script setup>
@@ -79,6 +104,24 @@ const project = ref([
     {id: 8, img: '/image/banner-6.jpg', name: 'Работы по повышению безопасности дор. движ., РУАД № 5'}
 ])
 
+const clients = [
+    {logo: 'client-1.png', alt: 'client-1'},
+    {logo: 'client-2.jpg', alt: 'client-2'},
+    {logo: 'client-3.png', alt: 'client-3'},
+    {logo: 'client-4.png', alt: 'client-4'},
+    {logo: 'client-5.jpg', alt: 'client-5'},
+    {logo: 'client-6.png', alt: 'client-6'},
+    {logo: 'client-7.png', alt: 'client-7'},
+    {logo: 'client-8.png', alt: 'client-8'}
+]
+
+const contacts = [
+    {title: 'Контактные телефоны', contact: '+7 (495) 783-68-53', to: 'tel:74957836853'},
+    {title: 'Электронная почта', contact: 'info@vzdv.ru', to: 'mailto:info@vzdv.ru'},
+    {title: 'Юридический адрес', contact: '117218, г. Москва, ул. Кржижановского, д. 15, корп. 5, эт. 5, пом. 517В, оф. 1', to: 'https://yandex.ru/maps/-/CDUTfZ14'},
+    {title: 'Почтовый адрес', contact: '125252, г. Москва, ул. Куусинена, д. 21Б, оф. 318', to: 'https://yandex.ru/maps/-/CDUTfZpG'}
+]
+
 const sliceProject = computed(() => {
   return project.value.slice(0, 6)
 })
@@ -107,6 +150,10 @@ const sliceProject = computed(() => {
         align-items: center;
 
         color: $text-header;
+
+        @media only screen and (max-width: 767px) {
+            height: 440px;
+        } 
 
         & > h1 {
             font-family: "Montserrat", "Arial", sans-serif;
@@ -231,7 +278,7 @@ const sliceProject = computed(() => {
 }
 
 .main-project {
-    padding-top: 60px;
+    padding: 60px 0 50px 0;
 
 
     .title-project {
@@ -259,11 +306,7 @@ const sliceProject = computed(() => {
                 max-width: calc((100% - 20px) / 2);
             }
 
-            @media only screen and (min-width: 375px) and (max-width: 767px) {
-                max-width: 100%;
-            }
-
-            @media only screen and (max-width: 374px) {
+            @media only screen and (max-width: 767px) {
                 max-width: 100%;
             }
 
@@ -331,23 +374,109 @@ const sliceProject = computed(() => {
             a {
                 text-align: center;
                 display: block;
+                color: $title;
 
                 font-family: "Montserrat";
 
                 &:hover {
+                    color: $bg;
                     text-decoration: none;
                 }
 
                 h3 {
-                    -webkit-transition: color 0.25s;
-                    transition: color 0.25s;
                     font-size: 17px;
                     text-transform: uppercase;
+
                 }
             }
 
         }
 
+    }
+}
+
+.main-clients {
+    background-color: $bg-advantages;
+    padding: 50px 0 30px 0;
+
+    .title-clients {
+        color: $title;
+        font-size: 22px;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .clients-flex {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+
+        gap: 20px;
+
+        .card-clients {
+            background-color: $text-header;
+            max-width: calc((100% - 20px * 3) / 4);
+            width: 100%;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            height: 110px;
+
+            @media only screen and (min-width: 768px) and (max-width: 1279px) {
+                max-width: calc((100% - 20px) / 2);
+            }
+
+            @media only screen and (max-width: 767px) {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+.map {
+    width: 100%;
+    height: 450px;
+    margin-bottom: 60px;
+
+    @media only screen and (max-width: 767px) {
+        height: 350px;
+    }
+}
+
+.main-contacts {
+    width: 100%;
+
+    .flex-contacts {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 20px;
+
+        .contact-card {
+            width: 100%;
+            max-width: calc((100% - 20px * 3) / 4);
+            display: inline-block;
+
+            @media only screen and (min-width: 768px) and (max-width: 1279px) {
+                max-width: calc((100% - 20px) / 2);
+            }
+
+            @media only screen and (max-width: 767px) {
+                max-width: 100%;
+            }
+
+            h3 {
+                font-size: 17px;
+                text-transform: uppercase;
+                color: $title;
+
+                margin-bottom: 20px;
+            }
+        }
     }
 }
 </style>

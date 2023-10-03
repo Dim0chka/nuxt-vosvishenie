@@ -20,11 +20,19 @@ a {
     font-family: "PT Sans";
     font-weight: normal;
     text-decoration: none;
+    -webkit-transition: color 0.25s;
+    transition: color 0.25s;
+    cursor: pointer;
     color: $text;
     &:hover {
         text-decoration: underline;
         color: $bg;
     }
+}
+
+p, span {
+    font-family: 'PT Sans';
+    font-weight: normal;
 }
 
 .container {

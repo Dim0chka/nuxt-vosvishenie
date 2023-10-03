@@ -3,10 +3,10 @@
         <div class="container main-center">
             <h1>Строительная компания "Воздвижение"</h1>
             <p>Надежная компания с большим опытом на рынке строительства</p>
-            <nuxt-link to="">Наши проекты</nuxt-link>
+            <nuxt-link :to="{ path: '/',hash:'#project'}">Наши проекты</nuxt-link>
         </div>
     </section>
-    <section class="main-advantages">
+    <section id="advantages" class="main-advantages">
         <div class="container">
             <div class="flex-advantages">
 
@@ -25,16 +25,16 @@
             </div>
         </div>
     </section>
-    <section class="main-project">
+    <section id="project" class="main-project">
         <div class="container">
             <h2 class="title-project">Наши проекты</h2>
             <div class="project-flex">
 
                 <div class="card-project" v-for="item in sliceProject">
-                    <nuxt-link class="card-project-img" to="">
+                    <nuxt-link class="card-project-img" to="/">
                         <div :style="{ backgroundImage: `url(${item.img})`}"></div>
                     </nuxt-link>
-                    <nuxt-link to="">
+                    <nuxt-link to="/">
                         <h3>{{ item.name }}</h3>
                     </nuxt-link>
                 </div>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </section>
-    <section class="main-clients">
+    <section id="clients" class="main-clients">
         <div class="container">
             <h2 class="title-clients">Нам доверяют клиенты</h2>
             <div class="clients-flex">
@@ -53,7 +53,7 @@
         </div>
     </section>
     <iframe class="map" src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae9f7b2f8e7d170a93ed029d5a200bab3667e74db0054e13bd2d6ac4b367353b2&amp;source=constructor" frameborder="0"></iframe>
-    <section class="main-contacts">
+    <section id="contact" class="main-contacts">
         <div class="container">
             <div class="flex-contacts">
 

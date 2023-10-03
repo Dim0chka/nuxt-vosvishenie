@@ -30,7 +30,7 @@
                 </div>
             </div>
             <nav class="header-nav">
-                <nuxt-link class="header-nav-item" v-for="nav in headNav" :to="nav.to">
+                <nuxt-link class="header-nav-item" v-for="nav in headNav" :to="{to: nav.to, hash: nav.hash}">
                     {{ nav.name }}
                 </nuxt-link>
             </nav>
@@ -39,7 +39,7 @@
                 <nav v-show="isActive" class="header-mob-nav">
                     <div class="container">
                         <div class="menu header-mob-flex">
-                            <nuxt-link class="header-mob-nav-item" v-for="nav in headNav" :to="nav.to">
+                            <nuxt-link @click="isActive = false" class="header-mob-nav-item" v-for="nav in headNav" :to="{to: nav.to, hash: nav.hash}">
                                 {{ nav.name }}
                             </nuxt-link>
                         </div>
@@ -50,7 +50,7 @@
 </template>
 
 <script setup>
-import {ref, watch} from 'vue'
+import {ref} from 'vue'
 
 const isActive = ref(false)
 
@@ -62,14 +62,14 @@ const headInfo = [
 ]
 
 const headNav = [
-    {name: "Главная", to: "/"},
-    {name: "Проекты", to: "/"},
-    {name: "Документы", to: "/"},
-    {name: "О компании", to: "/"},
-    {name: "Контакты", to: "/"}
+    {name: "Главная", to: "/", hash: ""},
+    {name: "Преимущества", to: "/", hash: "#advantages"},
+    {name: "Проекты", to: "/", hash: "#project"},
+    {name: "Наши клиенты", to: "/", hash: "#clients"},
+    {name: "Контакты", to: "/", hash: "#contact"}
 ]
 
-watch(() => {
+watchEffect(() => {
     useHead({
         bodyAttrs: {
             class: isActive.value ? '_lock' : ''

@@ -8,6 +8,11 @@
     margin: 0;
 }
 
+html {
+    scroll-padding-top: 20px;
+    scroll-behavior: smooth;
+}
+
 body, html {
     font-family: "Montserrat";
     font-weight: medium;

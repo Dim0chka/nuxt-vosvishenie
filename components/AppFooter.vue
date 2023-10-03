@@ -33,19 +33,19 @@
                         <div class="widget-footer">
                             <h3>Меню</h3>
                             <div class="footer-nav">
-                                <nuxt-link to="">
+                                <nuxt-link :to="{ path: '/', hash: ''}">
                                     Главная
                                 </nuxt-link>
-                                <nuxt-link to="">
+                                <nuxt-link :to="{ path: '/', hash: '#project'}">
                                     Проекты
                                 </nuxt-link>
-                                <nuxt-link to="">
-                                    Документы
+                                <nuxt-link :to="{ path: '/', hash: '#advantages'}" >
+                                    Преимущества
                                 </nuxt-link>
-                                <nuxt-link to="">
-                                    О компании
+                                <nuxt-link :to="{ path: '/', hash: '#clients'}">
+                                    Клиенты
                                 </nuxt-link>
-                                <nuxt-link to="">
+                                <nuxt-link :to="{ path: '/', hash: '#contacts'}">
                                     Контакты
                                 </nuxt-link>
                             </div>
@@ -54,7 +54,7 @@
                         <div class="widget-footer">
                             <h3>Проекты</h3>
                             <div class="footer-nav">
-                                <nuxt-link to="/" v-for="project in projectSlice">
+                                <nuxt-link :to="{ path: '/', hash: '#project'}" v-for="project in projectSlice">
                                     {{ project.name }}
                                 </nuxt-link>
                             </div>
